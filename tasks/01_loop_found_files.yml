@@ -1,0 +1,23 @@
+---
+
+- name: "[[Flatten EAP Modules]] Get file basename"
+  set_fact:
+    mod_base_name: "{{ outer_item.path | basename }}"
+
+- name: "[[Flatten EAP Modules]] Get file directory path"
+  set_fact:
+    mod_dir_name: "{{ outer_item.path | dirname }}"
+
+- name: "[[Flatten EAP Modules]] Get slot directory name"
+  set_fact:
+    mod_slot: "{{ mod_dir_name.split('/') | last }}"
+
+- name: "[[Flatten EAP Modules]] Get file name without extension"
+  set_fact:
+    mod_file_name: "{{ mod_base_name.split('.jar')[0] }}"
+
+- name: "[[Flatten EAP Modules]] Copy renamed file to target directory"
+  copy:
+    src: "{{ outer_item.path }}"
+    dest: "{{ target_directory }}/{{ mod_file_name }}_{{ mod_slot }}.jar"
+    remote_src: yes

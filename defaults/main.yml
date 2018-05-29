@@ -1,0 +1,5 @@
+---
+# defaults file for flatten-eap-modules
+
+eap_modules_path: "/opt/jboss/modules/custom"
+target_directory: "/tmp/flattened"

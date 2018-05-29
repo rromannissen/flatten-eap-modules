@@ -1,0 +1,13 @@
+---
+
+- name: "[Flatten EAP Modules]"
+  find:
+    paths: "{{ eap_modules_path }}"
+    recurse: yes
+    patterns: "*.jar"
+  register: found_jar_files
+
+- include_tasks: 01_loop_found_files.yml
+  loop: "{{ found_jar_files.files }}"
+  loop_control:
+    loop_var: outer_item

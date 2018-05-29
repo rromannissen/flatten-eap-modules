@@ -1,0 +1,4 @@
+---
+# tasks file for flatten-eap-modules
+
+- include: 01_flatten-eap-modules.yml
